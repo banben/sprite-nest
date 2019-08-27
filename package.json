@@ -11,6 +11,11 @@
   "files": [
     "dist"
   ],
+  "keywords": [
+    "puppeteer",
+    "puppeteer-cluster",
+    "crawler"
+  ],
   "license": "MIT",
   "dependencies": {
     "color-convert": "^2.0.0",

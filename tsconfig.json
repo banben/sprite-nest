@@ -1,0 +1,39 @@
+
+{ 
+    "compileOnSave": false,
+    "compilerOptions": {
+      "target": "es2016",
+      "lib": [ "es5", "es6", "es2017", "dom" ],
+      "module": "commonjs",
+      "allowSyntheticDefaultImports": true,
+      "esModuleInterop": true,
+      "strict": true,
+      "moduleResolution": "node",
+    
+      "rootDir": "./src",
+      "outDir": "./dist",
+      "declarationDir": "./dist",
+      "baseUrl": "./src",
+      "paths": {
+        "@/*": ["*"],
+        "@sprite/*": ["sprite/*"],
+        "@pipeline/*": ["pipeline/*"],
+        "@task/*": ["task/*"],
+        "@config/*": ["config/*"],
+        "@util/*": ["util/*"],
+        "@db/*": ["db/*"],
+        "@type/*": ["type/*"],
+        "@logger/*": ["logger/*"]
+      },
+      "downlevelIteration": true,
+      "declaration": true,
+      "skipLibCheck": true,
+      "noImplicitAny": false,
+      "noImplicitReturns": true,
+      "sourceMap": true,
+    },
+
+    "include": [
+      "./src/**/*"
+    ]
+  }

@@ -1,0 +1,11 @@
+node_modules/
+data/
+.idea/
+.vscode/
+coverage/
+
+dist/
+
+*.log
+.rpt2_cache/
+yarn-error.log

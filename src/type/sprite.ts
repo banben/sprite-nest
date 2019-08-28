@@ -3,13 +3,13 @@
  */
 export interface Sprite {
   home: string;
-  // getList?: SpriteMethod;
-  // getDetail?: SpriteMethod;
+  getList?: SpriteMethod;
+  getDetail?: SpriteMethod;
 }
 
 export interface SpriteMethod {
-  (config: object): Promise<any>;
-  (config: object): void;
+  ({page, data}): Promise<any>;
+  ({page, data}): void;
 }
 
 /**

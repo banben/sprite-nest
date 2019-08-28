@@ -2,6 +2,14 @@
 
 Crawl contents of specific types from web easily and flexibly.
 
+## Install
+
+```bash
+yarn add sprite-nest
+# or
+npm install sprite-nest --save
+```
+
 ## Usage
 
 ### Basic Usage

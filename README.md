@@ -14,6 +14,8 @@ npm install sprite-nest --save
 
 ### Basic Usage
 
+For example, I would like to get the results of multiple search engines.
+
 ```js
 import SpriteNest from 'sprite-nest'
 // or
@@ -29,6 +31,8 @@ Crawlers.search(keyword, ['google', 'baidu', 'duckduckgo']).then(res => {
 ```
 
 ### Use with Config
+
+I would like to enable monitor of cluster status and set a maximum concurrent crawler number, furthermore with a real browser window.
 
 ```js
 import SpriteNest from 'sprite-nest'
@@ -53,6 +57,8 @@ Crawlers.translator(sentence, ['google', 'baidu', 'bing'], {
 
 `Crawler` has some wrapped task. And `Sprite` is the class which has inner functions with puppeteer operation, how to custom it depends on you.
 
+And now I get information of Armani lipsticks to pick one!
+
 ```js
 import SpriteNest from 'sprite-nest'
 import puppeteer from 'puppeteer'
@@ -67,7 +73,7 @@ const UseInnerSprite = async () => {
       url: armaniSprite.home
     }
     const res = await armaniSprite.getList({ page, data })
-    console.log('result data is: ', res)
+    return res
 }
 
 UseInnerSprite()
@@ -164,4 +170,4 @@ Every sprite may has `getList()` or `getDetail()` method, depends on its type.
 * mongoose
   Bind [mongoose](https://github.com/Automattic/mongoose) schema and ts type to presist data in MongoDB
 * logger
-  Using [winstom](https://github.com/winstonjs/winston) create a custom logger to record info from task.
+  Using [winstom](https://github.com/winstonjs/winston) create a custom logger to record log info from task.

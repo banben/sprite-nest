@@ -7,7 +7,7 @@ export default class DiorLipstickSprite implements LipstickSprite {
         return new Promise(async(resolve, reject) => {
             try {
                 const productResults = [] as LipstickObject[];
-                const mainUrl = data.url || data;
+                const mainUrl = this.home;
                 await page.goto(mainUrl, { waitUntil: 'domcontentloaded' });
                 await page.waitForSelector('.catalog');
                 const productList = await page.$('.catalog');

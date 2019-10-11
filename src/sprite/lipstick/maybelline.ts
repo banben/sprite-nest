@@ -7,7 +7,7 @@ export default class MaybellineLipstickSprite implements LipstickSprite {
         return new Promise(async(resolve, reject) => {
             try {
                 const productResults: LipstickObject[] = [];
-                const mainUrl = data.url || data;
+                const mainUrl = this.home;
                 await page.goto(mainUrl, { waitUntil: 'domcontentloaded' });
                 await page.waitFor('.product-content-grid__grid');
                 await page.click('.product-content-grid__load-more');

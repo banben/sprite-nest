@@ -7,7 +7,7 @@ export default class ArmaniLipstickSprite implements LipstickSprite {
         return new Promise(async(resolve, reject) => {
             try {
                 const productResults: LipstickObject[] = [];
-                await page.goto(data.url || data, { waitUntil: 'domcontentloaded' });
+                await page.goto(this.home, { waitUntil: 'domcontentloaded' });
                 await page.waitForSelector('.search_result_items');
                 const productList = await page.$('.search_result_items');
                 const productHandles = await productList.$$('.product_tile_wrapper');

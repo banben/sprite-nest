@@ -7,7 +7,7 @@ export default class EsteelauderLipstickSprite implements LipstickSprite {
         return new Promise(async(resolve, reject) => {
             try {
                 const productResults: LipstickObject[] = [];
-                const mainUrl = data.url || data;
+                const mainUrl = this.home;
                 await page.goto(mainUrl, { waitUntil: 'domcontentloaded' });
                 await page.waitForSelector('.mpp__product-grid');
                 const productList = await page.$('.mpp__product-grid');

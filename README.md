@@ -38,7 +38,7 @@ Crawlers.search(keyword, ['google', 'baidu', 'duckduckgo']).then(res => {
 
 ### Use with Config
 
-Later I hope to get translation results of text content in multiple translators and compare them. Furthermore enable **monitor** of cluster status and set a **maximum concurrent crawler number**,  with a **visible browser window**.
+Later I hope to get translation results of text content in multiple translators and compare them. Furthermore set a **maximum concurrent crawler number** and enable **monitor** of cluster status, with a **visible browser window**.
 
 ```js
 import SpriteNest from 'sprite-nest'
@@ -47,11 +47,13 @@ const { Crawlers } = SpriteNest
 const sentence = 'good morning'
 
 Crawlers.translator(sentence, ['google', 'baidu', 'bing'], {
-  cluster: {
+  // Set config of puppeteer-cluster
+  cluster: { 
     maxConcurrency: 3,
     monitor: true,
   },
-  pptr: {
+  // Set config of puppeteer
+  pptr: { 
     headless: false
   }
 }).then(res => {
@@ -59,7 +61,9 @@ Crawlers.translator(sentence, ['google', 'baidu', 'bing'], {
 })
 ```
 
-### Use Sprite and drive Puppeteer Page
+> SpriteNest uses **puppeteer-core** in default.
+
+### Use Sprite and Puppeteer Page
 
 `Crawler` contains wrapped task and `Sprite` is the class which has inner functions with some puppeteer operations, it means you can input a custom Page instance and then will get crawled data.
 
@@ -75,13 +79,13 @@ const UseInnerSprite = async () => {
     const armaniSprite = new Sprites.LipStick.armani()
     const browser = await puppeteer.launch()
     const page = await browser.newPage()
-    const data = {
-      url: armaniSprite.home
-    }
-    return await armaniSprite.getList({ page, data })
+    return await armaniSprite.getList({ page })
 }
+
 UseInnerSprite().then(lipsticks => console.log('armani lipsticks: ', lipsticks));
 ```
+
+The exmaple above only get the basic information of lipsticks. In built-in lipstick task, it also get detail information of lipstick, like palette colors and names.
 
 ## API
 

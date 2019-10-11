@@ -7,7 +7,7 @@ export default class UrbandecayLipstickSprite implements LipstickSprite {
         return new Promise(async(resolve, reject) => {
             try {
                 const productResults: LipstickObject[] = [];
-                const mainUrl = data.url || data;
+                const mainUrl = this.home;
                 await page.goto(mainUrl, { waitUntil: 'domcontentloaded' });
                 await page.waitFor(2000);
                 await page.goto(mainUrl, {waitUntil: 'domcontentloaded'}); // trick for redirect

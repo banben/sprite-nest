@@ -7,7 +7,7 @@ export default class SephoraLipstickSprite implements LipstickSprite {
         return new Promise(async(resolve, reject) => {
             try {
                 const productResults: LipstickObject[] = [];
-                const mainUrl = data.url || data;
+                const mainUrl = this.home;
                 await page.goto(mainUrl, { waitUntil: 'domcontentloaded' });
                 await page.waitForSelector('[data-comp="ProductGrid"]');
                 const productList = await page.$('[data-comp="ProductGrid"]');

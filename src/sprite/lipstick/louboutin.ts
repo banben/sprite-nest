@@ -7,7 +7,7 @@ export class LouboutinLipstickSprite implements LipstickSprite {
     return new Promise(async(resolve, reject) => {
         try {
             const productResults: LipstickObject[] = [];
-            const mainUrl = data.url || data;
+            const mainUrl = this.home;
             await page.goto(mainUrl, { waitUntil: 'domcontentloaded' });
             const productList = await page.$('.category-main');
             const productHandles = await productList.$$('.product');

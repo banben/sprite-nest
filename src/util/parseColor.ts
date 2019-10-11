@@ -8,7 +8,6 @@ import { LipstickObject } from  '@type/sprite';
 // const splashy = require('splashy')()
 
 // const uuidv4 = require('uuid/v4')
-const l = console.log;
 const parseColor = async (obj: LipstickObject[]): Promise<LipstickObject[]> => {
     if (!obj) return [];
     const data: LipstickObject[] = [];
@@ -39,7 +38,7 @@ const parseColor = async (obj: LipstickObject[]): Promise<LipstickObject[]> => {
                             c.color_hsl = convert.hex.hsl(dominantColor);
                         }
                     } catch (err) {
-                        l(err);
+                        console.log(err);
                     }
                 }
             }

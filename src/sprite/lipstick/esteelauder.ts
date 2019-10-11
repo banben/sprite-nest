@@ -4,7 +4,6 @@ export default class EsteelauderLipstickSprite implements LipstickSprite {
     brand: string = 'esteelauder';
     home: string = LipstickURL.ESTEELAUDER;
     getList({ page, data }): Promise<LipstickObject[]> {
-        const l = console.log;
         return new Promise(async(resolve, reject) => {
             try {
                 const productResults: LipstickObject[] = [];
@@ -34,7 +33,6 @@ export default class EsteelauderLipstickSprite implements LipstickSprite {
                 }
                 resolve(productResults);
             } catch (err) {
-                l(err);
                 reject(new Error(err));
             }
         });

@@ -1,6 +1,5 @@
 import { SearchEngineURL } from '@config/sprite';
 import { SearchSprite, SearchObject } from '@type/sprite';
-const l = console.log;
 export default class GoogleSearchSprite implements SearchSprite {
     platform: string = 'google';
     home: string = SearchEngineURL.GOOGLE;

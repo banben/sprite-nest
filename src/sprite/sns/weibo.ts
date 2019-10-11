@@ -1,6 +1,5 @@
 import { SNSURL } from '@config/sprite';
 import { SNSSprite, SNSObject } from '@type/sprite';
-const l = console.log;
 export default class WeiboSNSSprite implements SNSSprite {
     platform: string = 'weibo';
     home: string = SNSURL.WEIBO;
@@ -15,7 +14,6 @@ export default class WeiboSNSSprite implements SNSSprite {
                 });
 
                 // login
-                l('login...');
                 await page.evaluate(account => {
                     const loginEl =  document.querySelector('#loginName') as HTMLInputElement;
                     loginEl.value = account.username;
@@ -26,18 +24,15 @@ export default class WeiboSNSSprite implements SNSSprite {
                 await page.waitForNavigation({waitUntil: 'domcontentloaded'});
                 await page.waitFor(5000);
                 // blogger mainpage
-                l('enter blogger main page...');
                 await page.goto(target, {waitUntil: 'domcontentloaded'});
                 await page.waitForSelector('.tab_wrap');
 
                 // blogger albums
-                l('enter blogger album page...');
                 await page.evaluate(() => {
                     const tab = document.querySelectorAll('.tb_tab .tab_link')[1] as HTMLAnchorElement;
                     tab.click();
                 });
 
-                l('get albums list...');
                 await page.waitForSelector('.photo_album_list');
                 const albumsUrl = await page.$$eval('.tab_li a', els => els[els.length - 1].href);
                 await page.goto(albumsUrl, {waitUntil: 'domcontentloaded'});
@@ -57,7 +52,6 @@ export default class WeiboSNSSprite implements SNSSprite {
                 // get photos
                 for (let i = 0, len = albumUrls.length; i < len; i++) {
                     let photoUrls = [];
-                    l(`get ${i + 1}th album photos..`);
                     await page.goto(albumUrls[i], {waitUntil: 'domcontentloaded'});
                     await page.waitFor(1000);
                     /*  list mode  */
@@ -65,7 +59,6 @@ export default class WeiboSNSSprite implements SNSSprite {
                     await page.waitForSelector('.photoList');
                     let pageNum = 1;
                     while (await page.$('.M_btn_c.next')) {
-                        l(`get ${i + 1} th album's ${pageNum}th album page data`);
                         let photos = await page.$$eval('.photoList .photo img', e => e.map(p => p.src));
                         photos = photos.map(url => {
                             if (isLarge) {

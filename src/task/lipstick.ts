@@ -3,16 +3,15 @@ import { initCluster, validFilter } from '@task/common';
 import SpriteLogger from '@logger/index';
 import { CustomConfig, LipstickObject, LipstickResult } from '@type/sprite';
 import { CrawlStep } from '@config/sprite';
+
 const spriteLogger = new SpriteLogger('lipstick', {
     meta: { service: 'lipstick' }
 });
 
-const l = console.log;
 const lipstickTask = async (brands: string[], config: CustomConfig = {}): Promise<LipstickResult[]> => {
 
     const existBrands = validFilter(brands, Object.keys(Sprites));
     if (!existBrands.length) { return []; }
-    l('lipstickTask start...');
     const cluster = await initCluster(config);
 
     const results: LipstickResult[] = [];
@@ -43,7 +42,7 @@ const lipstickTask = async (brands: string[], config: CustomConfig = {}): Promis
                         } catch (err) {
                             spriteLogger.error(brand, err.message);
                         } finally {
-                            spriteLogger.crawl(brand, CrawlStep.END);
+                            spriteLogger.crawl(brand, CrawlStep.END, obj.url);
                         }
                     });
                 });
@@ -54,7 +53,6 @@ const lipstickTask = async (brands: string[], config: CustomConfig = {}): Promis
     }
     await cluster.idle();
     await cluster.close();
-    l('lipstickTask end');
     return results;
 };
 

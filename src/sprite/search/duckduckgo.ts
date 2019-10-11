@@ -1,6 +1,5 @@
 import { SearchEngineURL } from '@config/sprite';
 import { SearchSprite, SearchObject } from '@type/sprite';
-// const l = console.log
 export default class DuckDuckGoSearchSprite implements SearchSprite {
     platform: string = 'duckduckgo';
     home: string = SearchEngineURL.DUCKDUCKGO;

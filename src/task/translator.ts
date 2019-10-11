@@ -7,19 +7,16 @@ const spriteLogger = new SpriteLogger('translator', {
     meta: { service: 'translator' }
 });
 
-const l = console.log;
 const translatorTask = async (content: string, platforms: string[], config: CustomConfig = {}): Promise<TranslatorResult[]> => {
     // platforms =  platforms.map(p => titleCase(p))
     const existPlatforms = validFilter(platforms, Object.keys(Sprites));
     if (!existPlatforms.length) { return []; }
-    l('translatorTask start...');
     const cluster = await initCluster(config);
     const results: TranslatorResult[] = [];
     for (const targetPlatform of existPlatforms) {
         let result: TranslatorObject;
         // const translator = Sprites[targetPlatform];
         const translatorSprite = new Sprites[targetPlatform]();
-        l(translatorSprite);
         const { home: url, platform } = translatorSprite;
         spriteLogger.crawl(platform, CrawlStep.LIST, url);
         cluster.queue(url, async ({ page, data }) => {
@@ -36,10 +33,9 @@ const translatorTask = async (content: string, platforms: string[], config: Cust
                     results.push({ platform, content, data: result });
                 }
             } catch (err) {
-              l(err);
                 spriteLogger.error(platform, err.message);
             } finally {
-                spriteLogger.crawl(platform, CrawlStep.END);
+                spriteLogger.crawl(platform, CrawlStep.END, url);
             }
         });
     }

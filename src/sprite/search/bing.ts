@@ -1,5 +1,5 @@
 import { SearchEngineURL } from '@config/sprite';
-import { SearchSprite, SearchObject } from '@type/sprite'; // const l = console.log
+import { SearchSprite, SearchObject } from '@type/sprite';
 export default class BingSearchSprite implements SearchSprite {
     platform: string = 'bing';
     home: string = SearchEngineURL.BING;

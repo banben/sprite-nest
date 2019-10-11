@@ -1,5 +1,6 @@
 
-import SpriteNest from './dist'
+import SpriteNest from './src/index'
+// import SpriteNest from './dist'
 import { BROWSER_CONFIG } from './src/config/index' 
 import puppeteer from 'puppeteer-core'
 const l = console.log;
@@ -39,11 +40,11 @@ const UseWrappedTask = async () => {
   // })
   // l('translators data: ', transRes);
   
-  // const lipRes = await Crawlers.liptstick(['123', 'hahaha']);
-  // l('lipsticks data: ', lipRes);
+  const lipRes = await Crawlers.liptstick(['dior']);
+  l('lipsticks data: ', lipRes);
 
-  const searchRes = await Crawlers.search('ishihara satomi', ['google', 'baidu', 'duckduckgo']);
-  l('search engines data: ', searchRes);
+  // const searchRes = await Crawlers.search('ishihara satomi', ['google', 'baidu', 'duckduckgo']);
+  // l('search engines data: ', searchRes);
 
   l('all tasks ending')
   // exec('go run scripts/image.go', (err, stdout, stderr) => console.log(stdout));

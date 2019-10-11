@@ -38,7 +38,6 @@ export default class ArmaniLipstickSprite implements LipstickSprite {
     getDetail({ page, data }): Promise<LipstickColor[]> {
         return new Promise(async (resolve, reject) => {
             try {
-                const l = console.log;
                 const productColors: LipstickColor[] = [];
                 await page.goto(data.url || data, { waitUntil: 'domcontentloaded' });
                 await page.waitForSelector('.swatches');
@@ -65,7 +64,7 @@ export default class ArmaniLipstickSprite implements LipstickSprite {
                         };
                         productColors.push(color);
                     } catch (err) {
-                        l(err);
+                       console.log(err);
                     }
                 }
                 console.log(`has ${productColors.length} colors`);

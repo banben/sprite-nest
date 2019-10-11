@@ -2,6 +2,12 @@
 
 Crawl contents of specific types from web easily and flexibly.
 
+## Feature
+
+* Built-in specified type content crawlers
+* Cluster execution(powered by [pupputeer-cluster](https://github.com/thomasdondorf/puppeteer-cluster))
+* Logger information (powered by [winstom](https://github.com/winstonjs/winston))
+
 ## Install
 
 ```bash
@@ -14,7 +20,7 @@ npm install sprite-nest --save
 
 ### Basic Usage
 
-For example, I would like to get the results of multiple search engines.
+For example I would like to get the searching results of a keyword in multiple search engines.
 
 ```js
 import SpriteNest from 'sprite-nest'
@@ -32,7 +38,7 @@ Crawlers.search(keyword, ['google', 'baidu', 'duckduckgo']).then(res => {
 
 ### Use with Config
 
-I would like to enable monitor of cluster status and set a maximum concurrent crawler number, furthermore with a real browser window.
+Later I hope to get translation results of text content in multiple translators and compare them. Furthermore enable **monitor** of cluster status and set a **maximum concurrent crawler number**,  with a **visible browser window**.
 
 ```js
 import SpriteNest from 'sprite-nest'
@@ -53,11 +59,11 @@ Crawlers.translator(sentence, ['google', 'baidu', 'bing'], {
 })
 ```
 
-### Use Sprite and Puppeteer
+### Use Sprite and drive Puppeteer Page
 
-`Crawler` has some wrapped task. And `Sprite` is the class which has inner functions with puppeteer operation, how to custom it depends on you.
+`Crawler` contains wrapped task and `Sprite` is the class which has inner functions with some puppeteer operations, it means you can input a custom Page instance and then will get crawled data.
 
-And now I get information of Armani lipsticks to pick one!
+And now I get information of **Armani lipsticks** to pick one!
 
 ```js
 import SpriteNest from 'sprite-nest'
@@ -72,18 +78,12 @@ const UseInnerSprite = async () => {
     const data = {
       url: armaniSprite.home
     }
-    const res = await armaniSprite.getList({ page, data })
-    return res
+    return await armaniSprite.getList({ page, data })
 }
-
-UseInnerSprite()
+UseInnerSprite().then(lipsticks => console.log('armani lipsticks: ', lipsticks));
 ```
 
 ## API
-
-### Overview
-
-Sprite ----(Puppeteer / Puppteer-core + puppeteer-cluster)----> Task --(Pipeline / Util)---> Job
 
 ### Main 
 
@@ -165,9 +165,6 @@ Every sprite may has `getList()` or `getDetail()` method, depends on its type.
 - [ ] testing
 - [ ] custom sprite constructor
 
-## Other Feature
+## License
 
-* mongoose
-  Bind [mongoose](https://github.com/Automattic/mongoose) schema and ts type to presist data in MongoDB
-* logger
-  Using [winstom](https://github.com/winstonjs/winston) create a custom logger to record log info from task.
+MIT

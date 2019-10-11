@@ -8,18 +8,9 @@ const spriteLogger = new SpriteLogger('search', {
     meta: { service: 'search' }
 });
 
-const l = console.log;
 const searchTask = async (keyword: string, platforms: string[], config: CustomConfig = {}): Promise<SearchResult[]> => {
     const existPlatforms = validFilter(platforms, Object.keys(Sprites));
     if (!existPlatforms.length) { return []; }
-    // const allPlatforms = Object.keys(Sprites);
-    // const existPlatforms = platforms.filter(p => {
-    //     return allPlatforms.indexOf(p) !== -1;
-    // });
-    // if (!existPlatforms.length) {
-    //     return undefined;
-    // }
-    l('searchTask start...');
     const cluster = await initCluster(config);
 
     const results: SearchResult[] = [];
@@ -45,16 +36,14 @@ const searchTask = async (keyword: string, platforms: string[], config: CustomCo
                     results.push({ platform, keyword, data: result });
                 }
             } catch (err) {
-                l(err);
                 spriteLogger.error(platform, err.message);
             } finally {
-                spriteLogger.crawl(platform, CrawlStep.END);
+                spriteLogger.crawl(platform, CrawlStep.END, url);
             }
         });
     }
     await cluster.idle();
     await cluster.close();
-    l('searchTask end');
     return results;
 };
 export default searchTask;

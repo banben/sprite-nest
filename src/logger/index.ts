@@ -1,7 +1,7 @@
 import winston, { format } from 'winston';
 import { Format } from 'logform';
 import { CrawlStep } from '@config/sprite';
-const { combine, prettyPrint, timestamp, json, colorize } = format;
+const { combine, timestamp, json, /* colorize, prettyPrint */ } = format;
 
 interface Logger {
     logger: winston.Logger;
@@ -58,7 +58,11 @@ export default class SpriteLogger implements Logger {
                 });
                 break;
             case CrawlStep.END:
-                this.logger.info(`${prefix}: End all crawling`);
+                this.logger.log({
+                    level: 'info',
+                    message: `${prefix}: End crawling`,
+                    url
+                });
         }
     }
 

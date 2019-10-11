@@ -6,11 +6,9 @@ import { CrawlStep } from '@config/sprite';
 const spriteLogger = new SpriteLogger('sns', {
     meta: { service: 'sns' }
 });
-const l = console.log;
 
 const snsTask = async (target: string, account: AccountType, platform: string, config: CustomConfig = {}) => {
     const snsSprite = new Sprites[platform]();
-    l('snsTask start...');
     const cluster = await initCluster(config);
     const results: SNSResult = {
         platform,
@@ -30,19 +28,16 @@ const snsTask = async (target: string, account: AccountType, platform: string, c
                 target
             };
             const res = await snsSprite.getList({ page, data: inputData }) as SNSObject[];
-            l('get results in task');
             results.data = res;
         } catch (err) {
-            l(err);
             spriteLogger.error(platform, err.message);
         }
     });
 
     await cluster.idle();
-    spriteLogger.crawl(platform, CrawlStep.END);
+    spriteLogger.crawl(platform, CrawlStep.END, url);
     // }
     await cluster.close();
-    l('snsTask end');
     return results;
 };
 

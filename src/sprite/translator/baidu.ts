@@ -5,7 +5,6 @@ export default class BaiduTranslatorSprite implements TranslatorSprite {
     home: string = TranslatorURL.BAIDU;
     getDetail({ page, data }): Promise<TranslatorObject> {
         return new Promise(async(resolve, reject) => {
-            const l = console.log;
             try {
                 const { content } = data;
                 await page.goto(data.url || data, { waitUntil: 'domcontentloaded' });
@@ -18,7 +17,6 @@ export default class BaiduTranslatorSprite implements TranslatorSprite {
                 await page.click('.inner #translate-button');
                 await page.waitFor(1000);
                 const result = await page.$$eval('.ordinary-output.target-output', e => e.map(el => el.textContent).join(' '));
-                l('results: ', result);
                 resolve({
                     language: 'en',
                     origin: content,

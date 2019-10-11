@@ -1,4 +1,3 @@
-const l = console.log;
 // import { LipstickObject } from '../../config/interface';
 import parseColor from '@util/parseColor';
 import { connectMongo, LipstickOperation } from '@db/opera';
@@ -6,9 +5,7 @@ import { DB_CONFIG } from '@config/index';
 import { LipstickObject } from '@type/sprite';
 
 export const colorParse = async (data: LipstickObject[]): Promise<LipstickObject[]> => {
-    l('start parse colors!');
     const parsed = await parseColor(data);
-    l('end parse colors!');
     return parsed;
 };
 
@@ -26,7 +23,6 @@ export const dataSync = async (data: LipstickObject[]): Promise<boolean> => {
             await lipstickOperation.save(results[i]);
         }
     } catch (e) {
-        l(e);
         return false;
     }
     return true;

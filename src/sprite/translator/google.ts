@@ -5,7 +5,6 @@ export default class GoogleTranslatorSprite implements TranslatorSprite {
     home: string = TranslatorURL.GOOGLE;
     getDetail({ page, data }): Promise<TranslatorObject> {
         return new Promise(async(resolve, reject) => {
-            const l = console.log;
             let result;
             const platform = 'google';
             try {
@@ -24,7 +23,6 @@ export default class GoogleTranslatorSprite implements TranslatorSprite {
                     target: result
                 });
             } catch (err) {
-                l(err);
                 reject(new Error(err));
             }
         });

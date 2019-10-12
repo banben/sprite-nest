@@ -1,6 +1,6 @@
 {
   "name": "sprite-nest",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "author": "yrq110<yrq1025@gmail.com>",
   "scripts": {
     "dev": "ts-node-dev -r tsconfig-paths/register --respawn --transpileOnly play.ts",

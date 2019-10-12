@@ -1,7 +1,7 @@
 import Sprites from '@sprite/index';
 import { lipstickCrawler, searchCrawler, snsCrawler, translatorCrawler } from './job/index';
 
-const Crawlers = {
+const Crawler = {
   liptstick: lipstickCrawler,
   search: searchCrawler,
   sns: snsCrawler,
@@ -9,6 +9,6 @@ const Crawlers = {
 };
 
 export default {
-  Crawlers,
-  Sprites
+  Crawler,
+  Sprite: Sprites
 };

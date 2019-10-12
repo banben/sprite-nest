@@ -4,7 +4,7 @@ Crawl contents of specific types from web easily and flexibly.
 
 ## Feature
 
-* Built-in specified type content crawlers
+* Built-in specified type content Crawler
 * Cluster execution(powered by [pupputeer-cluster](https://github.com/thomasdondorf/puppeteer-cluster))
 * Logger information (powered by [winstom](https://github.com/winstonjs/winston))
 
@@ -27,11 +27,11 @@ import SpriteNest from 'sprite-nest'
 // or
 // const SpriteNest = require('sprite-nest').default
 
-const { Crawlers } = SpriteNest
+const { Crawler } = SpriteNest
 
 const keyword = 'ishihara satomi'
 
-Crawlers.search(keyword, ['google', 'baidu', 'duckduckgo']).then(res => {
+Crawler.search(keyword, ['google', 'baidu', 'duckduckgo']).then(res => {
   console.log(`result of searching ${keyword}: `, res)
 });
 ```
@@ -42,11 +42,11 @@ Later I hope to get translation results of text content in multiple translators 
 
 ```js
 import SpriteNest from 'sprite-nest'
-const { Crawlers } = SpriteNest
+const { Crawler } = SpriteNest
 
 const sentence = 'good morning'
 
-Crawlers.translator(sentence, ['google', 'baidu', 'bing'], {
+Crawler.translator(sentence, ['google', 'baidu', 'bing'], {
   // Set config of puppeteer-cluster
   cluster: { 
     maxConcurrency: 3,
@@ -73,10 +73,10 @@ And now I get information of **Armani lipsticks** to pick one!
 import SpriteNest from 'sprite-nest'
 import puppeteer from 'puppeteer'
 
-const { Sprites } = SpriteNest;
+const { Sprite } = SpriteNest;
 
 const UseInnerSprite = async () => {
-    const armaniSprite = new Sprites.LipStick.armani()
+    const armaniSprite = new Sprite.LipStick.armani()
     const browser = await puppeteer.launch()
     const page = await browser.newPage()
     return await armaniSprite.getList({ page })
@@ -89,26 +89,20 @@ The exmaple above only get the basic information of lipsticks. In built-in lipst
 
 ## API
 
-### Main 
+### Crawler
 
-`Crawlers` \<Object\>
-  * `lipstick` \<Function\>
-  * `search` \<Function\>
-  * `sns` \<Function\>
-  * `translator` \<Function\>
-
-#### `Crawlers.lipstick(brands, config)`
+#### `Crawler.lipstick(brands, config)`
 
 * `brands` <string[]>
 * `config` <?CustomConfig>
 
-#### `Crawlers.search(keyword, platforms, config)`
+#### `Crawler.search(keyword, platforms, config)`
 
 * `keyword` \<string\>
 * `platforms` <string[]>
 * `config` <?CustomConfig>
 
-#### `Crawlers.sns(target, account, platform, config)`
+#### `Crawler.sns(target, account, platform, config)`
 
 * `target` \<string\>
 * `account` \<Object\>
@@ -117,13 +111,13 @@ The exmaple above only get the basic information of lipsticks. In built-in lipst
 * `brands` <string[]>
 * `config` <?CustomConfig>
 
-#### `Crawlers.translator(content, platforms, config)`
+#### `Crawler.translator(content, platforms, config)`
 
 * `content` \<string\>
 * `platforms` <string[]>
 * `config` <?CustomConfig>
 
-### Sprites
+### Sprite
 
 Every sprite may has `getList()` or `getDetail()` method, depends on its type.
 

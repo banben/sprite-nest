@@ -2,7 +2,9 @@
 
 中文 | [English](README-EN.md)
 
-轻松灵活地从网络上爬取指定类型内容的数据
+轻松灵活地从网络上爬取指定类型内容的数据, ~~为了练习ts与puppeteer~~
+
+基本想法是：对某一类型数据设计统一的结构(这里的类型不是文件格式)，当爬取同类不同种的数据时方便管理：如翻译器(谷歌翻译、百度翻译等)、搜索引擎(谷歌、百度、duckduckgo等)、口红(armani,ysl,dior等)、社交平台(微博等)。
 
 ## 特性
 
@@ -127,7 +129,7 @@ UseInnerSprite().then(lipsticks => console.log('armani lipsticks: ', lipsticks))
 
 #### Lipstick
 
-* getList && getDetail
+* getList & getDetail
 
 - [x] armani
 - [x] covergirl
